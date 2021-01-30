@@ -37,8 +37,9 @@ public class FollowCam : MonoBehaviour
         
         speed = Mathf.MoveTowards(speed,diff,Time.deltaTime*acceleration); //no overshoot
         //speed = Mathf.MoveTowards(drag*speed,Mathf.Sign(diff)*maxSpeed,Time.deltaTime*acceleration);
-        
         //Debug.Log($"{diff},{speed}");
+
+        
         camPos.y += speed * Time.deltaTime;
         camPos.y = Mathf.Clamp(camPos.y,minY,maxY);
         transform.position = camPos;
