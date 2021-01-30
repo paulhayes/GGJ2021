@@ -498,7 +498,7 @@ PrefabInstance:
     - target: {fileID: 1414887811142073264, guid: 6dd3efc5aed39c94a8eda4629c41de4e,
         type: 3}
       propertyPath: m_Name
-      value: Murray_riggedtest (1) Variant 1
+      value: MurrayInitialPosition
       objectReference: {fileID: 0}
     - target: {fileID: 1801283812366605061, guid: 6dd3efc5aed39c94a8eda4629c41de4e,
         type: 3}
@@ -644,6 +644,11 @@ PrefabInstance:
         type: 3}
       propertyPath: minForce
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583377836999929007, guid: 6dd3efc5aed39c94a8eda4629c41de4e,
+        type: 3}
+      propertyPath: maxForce
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 5583377837162800347, guid: 6dd3efc5aed39c94a8eda4629c41de4e,
         type: 3}
@@ -1398,6 +1403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceMultiplier: 20
   maxForce: 0
+  maxArrowScale: 4
   minForce: 0.2
   ArrowPrefab: {fileID: 0}
 --- !u!1 &981140023
