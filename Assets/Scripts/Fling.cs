@@ -6,8 +6,10 @@ using UnityEngine.EventSystems;
 public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     [SerializeField] float forceMultiplier;
-    [SerializeField] Transform arrowAsset;
+    Transform arrowAsset;
     [SerializeField] float maxForce;
+
+    [SerializeField] Transform ArrowPrefab;
     Vector3 startPos;
     Vector3 currentPos;
     bool down;
@@ -16,6 +18,7 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
 
     void Awake()
     {
+        arrowAsset = Instantiate(ArrowPrefab);
         arrowAsset.gameObject.SetActive(false);
     }
 
