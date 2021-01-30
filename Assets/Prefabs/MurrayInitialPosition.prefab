@@ -872,7 +872,7 @@ GameObject:
   - component: {fileID: 2736474637410093475}
   - component: {fileID: 5436947485331645657}
   m_Layer: 0
-  m_Name: Murray_riggedtest (1) Variant 1
+  m_Name: MurrayInitialPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1065,6 +1065,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceMultiplier: 800
   maxForce: 800
+  maxArrowScale: 4
+  minForce: 100
   ArrowPrefab: {fileID: 732829375530449564, guid: 4fdb11b3d165f5841a032689d7d22ffe,
     type: 3}
 --- !u!1 &2118011178711249297
