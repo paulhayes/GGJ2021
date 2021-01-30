@@ -7,8 +7,11 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
 {
     [SerializeField] float forceMultiplier;
     Transform arrowAsset;
-    [SerializeField] float maxForce;
+    [SerializeField] float maxForce = 800f;
+    [SerializeField] float maxArrowScale = 4f;
 
+
+    [SerializeField] float minForce = 10f;
     [SerializeField] Transform ArrowPrefab;
     Vector3 startPos;
     Vector3 currentPos;
@@ -16,6 +19,10 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     Vector3 localSpaceStartPos;
     Rigidbody body;
     Camera cam;
+
+
+
+    float flingForce;
 
     void Awake()
     {
@@ -26,7 +33,7 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     void Update()
     {
         if(down){
-            Debug.DrawLine(startPos, currentPos,Color.green,0.2f );    
+            Debug.DrawLine(startPos, currentPos,Color.green,0.5f );    
 
                     
     
@@ -35,7 +42,6 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
         //currentPos = eventData.pointerCurrentRaycast.worldPosition;
         //currentPos.z = startPos.z;
         Plane plane = new Plane(-Vector3.forward,startPos);
@@ -49,8 +55,10 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
 
         var midPoint = 0.5f * ( startPos + currentPos );
         arrowAsset.position = startPos + (cam.transform.position-startPos).normalized;
-        arrowAsset.rotation = Quaternion.FromToRotation(Vector3.left,direction);
-        
+        arrowAsset.rotation = Quaternion.FromToRotation(Vector3.down,direction);
+        flingForce =  Mathf.Clamp( Vector3.Distance(startPos,currentPos)*forceMultiplier, minForce, maxForce );
+        arrowAsset.localScale = Vector3.one * maxArrowScale * Mathf.InverseLerp(0,maxForce,flingForce);
+        arrowAsset.gameObject.SetActive(true);
     }
 
 
@@ -60,15 +68,14 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
         startPos = eventData.pointerCurrentRaycast.worldPosition;
         localSpaceStartPos = eventData.pointerCurrentRaycast.gameObject.transform.InverseTransformPoint( eventData.pointerCurrentRaycast.worldPosition );
         body = eventData.pointerCurrentRaycast.gameObject.GetComponentInParent<Rigidbody>();
-        Debug.Log("pointer down");
-        arrowAsset.gameObject.SetActive(true);
+        
         down = true;
         cam = eventData.pressEventCamera;
+        flingForce = 0;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("OnPointerUp");
         //release
         down = false;
         arrowAsset.gameObject.SetActive(false);
@@ -78,9 +85,8 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
 
     void DoFling(PointerEventData eventData)
     {
-        var endPos = eventData.pointerCurrentRaycast.worldPosition;
-        endPos.z = startPos.z;
-        var force =  Mathf.Min( maxForce, Vector3.Distance(startPos,endPos)*forceMultiplier );
+        var endPos = currentPos;
+        var force =  flingForce; //Mathf.Min( maxForce, Vector3.Distance(startPos,endPos)*forceMultiplier );
         var forceDir = -(endPos-startPos).normalized;
         
         if(body){
