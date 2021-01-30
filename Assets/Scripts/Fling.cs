@@ -15,6 +15,7 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     bool down;
     Vector3 localSpaceStartPos;
     Rigidbody body;
+    Camera cam;
 
     void Awake()
     {
@@ -39,14 +40,15 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
         //currentPos.z = startPos.z;
         Plane plane = new Plane(-Vector3.forward,startPos);
         float distance;
-        var ray = eventData.enterEventCamera.ScreenPointToRay(eventData.pointerCurrentRaycast.screenPosition);
+        //Debug.Log($"{eventData.position} {eventData.pointerCurrentRaycast.screenPosition}");
+        var ray = cam.ScreenPointToRay(eventData.position);
         if( plane.Raycast(ray,out distance) ){
             currentPos = ray.origin + ray.direction * distance;
         }
         var direction = (currentPos-startPos).normalized;
 
         var midPoint = 0.5f * ( startPos + currentPos );
-        arrowAsset.position = startPos + (eventData.enterEventCamera.transform.position-startPos).normalized;
+        arrowAsset.position = startPos + (cam.transform.position-startPos).normalized;
         arrowAsset.rotation = Quaternion.FromToRotation(Vector3.left,direction);
         
     }
@@ -61,6 +63,7 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
         Debug.Log("pointer down");
         arrowAsset.gameObject.SetActive(true);
         down = true;
+        cam = eventData.pressEventCamera;
     }
 
     public void OnPointerUp(PointerEventData eventData)
