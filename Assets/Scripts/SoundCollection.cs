@@ -14,4 +14,10 @@ public class SoundCollection : ScriptableObject
         }
         return sounds[index++];
     }
+
+    public AudioClip GetClip(int index)
+    {
+        return sounds[index % sounds.Length];
+        
+    }
 }

@@ -46,7 +46,6 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
                     StartFling(hitInfo.point,hitInfo.collider.gameObject);
                 }
 
-                //StartFling();                
             }
             
         }
