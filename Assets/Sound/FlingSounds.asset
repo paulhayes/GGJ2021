@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1954eddbaf9836342905dfc24e217179, type: 3}
+  m_Name: FlingSounds
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 5c581e25d8c8e2b4794ef8ae70b9b2bf, type: 3}
+  - {fileID: 8300000, guid: c2d9ff5f01e742040b81cb75b725ac57, type: 3}
+  - {fileID: 8300000, guid: c9bbab30b3990ea4b8b12096ffc24813, type: 3}
+  - {fileID: 8300000, guid: 3dac7fb790fdff2429d979e318497ec6, type: 3}
+  - {fileID: 8300000, guid: 7e78a9df7d83cb245b7551b1c43f411e, type: 3}
+  - {fileID: 8300000, guid: fc51db97b12675544abefa5cf02282c4, type: 3}
+  - {fileID: 8300000, guid: 9715aa5ac5724bf4daa123feb78b4d5a, type: 3}

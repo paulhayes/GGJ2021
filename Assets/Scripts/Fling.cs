@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
@@ -9,10 +10,15 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     Transform arrowAsset;
     [SerializeField] float maxForce = 800f;
     [SerializeField] float maxArrowScale = 4f;
+    [SerializeField] LayerMask layerMask;
 
 
     [SerializeField] float minForce = 10f;
     [SerializeField] Transform ArrowPrefab;
+    
+    [SerializeField] bool clickAnywhere;
+
+    [SerializeField] UnityEvent OnFling;
     Vector3 startPos;
     Vector3 currentPos;
     bool down;
@@ -32,22 +38,37 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
 
     void Update()
     {
-        if(down){
-            Debug.DrawLine(startPos, currentPos,Color.green,0.5f );    
+        if(!down && clickAnywhere){
+            if(Input.GetMouseButtonDown(0)){
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hitInfo;
+                if( Physics.SphereCast(ray,0.3f,out hitInfo,100f,layerMask,QueryTriggerInteraction.Ignore) && hitInfo.collider.GetComponentInParent<Fling>() ){
+                    StartFling(hitInfo.point,hitInfo.collider.gameObject);
+                }
 
-                    
-    
+                //StartFling();                
+            }
+            
+        }
+        else if(down){
+            if(Input.GetMouseButtonUp(0)){
+                StopFling();
+            }
+            else {
+                UpdateArrow();
+            }
+            
         }
     }
 
-    public void OnDrag(PointerEventData eventData)
+    private void UpdateArrow()
     {
         //currentPos = eventData.pointerCurrentRaycast.worldPosition;
         //currentPos.z = startPos.z;
         Plane plane = new Plane(-Vector3.forward,startPos);
         float distance;
         //Debug.Log($"{eventData.position} {eventData.pointerCurrentRaycast.screenPosition}");
-        var ray = cam.ScreenPointToRay(eventData.position);
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if( plane.Raycast(ray,out distance) ){
             currentPos = ray.origin + ray.direction * distance;
         }
@@ -61,29 +82,51 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
         arrowAsset.gameObject.SetActive(true);
     }
 
-
-    public void OnPointerDown(PointerEventData eventData)
+    void StartFling(Vector3 startPos, GameObject targetObject)
     {
-        //pull
-        startPos = eventData.pointerCurrentRaycast.worldPosition;
-        localSpaceStartPos = eventData.pointerCurrentRaycast.gameObject.transform.InverseTransformPoint( eventData.pointerCurrentRaycast.worldPosition );
-        body = eventData.pointerCurrentRaycast.gameObject.GetComponentInParent<Rigidbody>();
+        if(down){
+            return;
+        }
+        this.startPos = startPos;
+        localSpaceStartPos = targetObject.transform.InverseTransformPoint( startPos );
+        body = targetObject.GetComponentInParent<Rigidbody>();
         
         down = true;
-        cam = eventData.pressEventCamera;
+        cam = Camera.main;
         flingForce = 0;
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    void StopFling()
     {
         //release
         down = false;
         arrowAsset.gameObject.SetActive(false);
 
-        DoFling(eventData);
+        DoFling();
     }
 
-    void DoFling(PointerEventData eventData)
+    
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        
+    }
+
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        //pull
+        StartFling(eventData.pointerCurrentRaycast.worldPosition,eventData.pointerCurrentRaycast.gameObject);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if(down){
+            StopFling();
+        }
+    }
+
+    void DoFling()
     {
         var endPos = currentPos;
         var force =  flingForce; //Mathf.Min( maxForce, Vector3.Distance(startPos,endPos)*forceMultiplier );
@@ -97,5 +140,7 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
         else {
             Debug.LogError("no rigidbody found on character?");
         }
+
+        OnFling.Invoke();
     }
 }
