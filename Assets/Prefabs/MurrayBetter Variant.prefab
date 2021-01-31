@@ -264,6 +264,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.14006019
       objectReference: {fileID: 0}
+    - target: {fileID: 1679669938, guid: 3b7eaabffaadb7f4ead2c43b8aaf78e5, type: 3}
+      propertyPath: m_Size.x
+      value: 0.0000002703948
+      objectReference: {fileID: 0}
     - target: {fileID: 1785867793, guid: 3b7eaabffaadb7f4ead2c43b8aaf78e5, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.00000023841858
@@ -635,7 +639,7 @@ PrefabInstance:
     - target: {fileID: 6836064529441313041, guid: 3b7eaabffaadb7f4ead2c43b8aaf78e5,
         type: 3}
       propertyPath: m_Name
-      value: MurrayBetter
+      value: MurrayBetter Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6836064529441313041, guid: 3b7eaabffaadb7f4ead2c43b8aaf78e5,
         type: 3}
