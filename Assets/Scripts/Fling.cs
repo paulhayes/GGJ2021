@@ -34,18 +34,24 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     {
         arrowAsset = Instantiate(ArrowPrefab);
         arrowAsset.gameObject.SetActive(false);
+        
     }
 
     void Update()
     {
         if(!down && clickAnywhere){
+            if( EventSystem.current.IsPointerOverGameObject() ){
+                return;
+            }
             if(Input.GetMouseButtonDown(0)){
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hitInfo;
+                
                 if( Physics.SphereCast(ray,0.3f,out hitInfo,100f,layerMask,QueryTriggerInteraction.Ignore) && hitInfo.collider.GetComponentInParent<Fling>() ){
+                    
                     StartFling(hitInfo.point,hitInfo.collider.gameObject);
                 }
-
+                
             }
             
         }
