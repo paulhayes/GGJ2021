@@ -15,6 +15,11 @@ public class SoundCollection : ScriptableObject
         return sounds[index++];
     }
 
+    public AudioClip RandomClip(){
+        int randomIndex = Random.Range(0, sounds.Length-1);
+        return sounds[randomIndex];
+    }
+
     public AudioClip GetClip(int index)
     {
         return sounds[index % sounds.Length];

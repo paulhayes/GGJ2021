@@ -11,4 +11,9 @@ public class PlaySound : MonoBehaviour
     {
         audioSource.PlayOneShot(soundCollection.NextClip());
     }
+
+    public void PlayRandom()
+    {
+        audioSource.PlayOneShot(soundCollection.RandomClip());
+    }
 }
