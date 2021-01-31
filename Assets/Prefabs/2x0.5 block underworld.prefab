@@ -392,6 +392,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Underworld_4x1
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 2ac104eb9b92cbc4d9e00dd4c3ae9c0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ac104eb9b92cbc4d9e00dd4c3ae9c0d, type: 3}
 --- !u!4 &2697603614608178176 stripped
