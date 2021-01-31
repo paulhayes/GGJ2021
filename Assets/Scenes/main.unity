@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: e83f1ad6488707a4d8945eb2f51bada6,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -27745,6 +27745,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 119362907}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   targetTag: Player
 --- !u!65 &1962472535
 BoxCollider:
@@ -27782,7 +27793,8 @@ AudioSource:
   m_GameObject: {fileID: 1962472533}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8375351970673895798, guid: a7f5b8b2d8f9144eab83adfa837913a6,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 582a89816958f4921bd6038dd34a08d2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
