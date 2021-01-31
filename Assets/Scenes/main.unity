@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: e83f1ad6488707a4d8945eb2f51bada6,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5231,6 +5231,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3044410076293449, guid: 3f676f0ceaabc5b45b1d4f8693c067b1, type: 3}
+      propertyPath: m_SelectedFaces.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044410076293449, guid: 3f676f0ceaabc5b45b1d4f8693c067b1, type: 3}
+      propertyPath: m_SelectedEdges.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044410076293449, guid: 3f676f0ceaabc5b45b1d4f8693c067b1, type: 3}
+      propertyPath: m_SelectedVertices.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3266166386751002740, guid: 3f676f0ceaabc5b45b1d4f8693c067b1,
         type: 3}
       propertyPath: m_Mesh
