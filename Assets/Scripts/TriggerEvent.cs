@@ -12,7 +12,8 @@ public class TriggerEvent : MonoBehaviour
         if(string.Empty!=targetTag && !other.gameObject.CompareTag(targetTag)){
             return;
         }
-            Debug.Log($"{name}.OnTriggerEnter");
+        Debug.Log($"{name}.OnTriggerEnter {other.name}");
+        
         TriggerDownEvent.Invoke();
     }
 }
