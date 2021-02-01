@@ -17,7 +17,9 @@ public class Menu : MonoBehaviour
     void Update()
     {
         if( Input.GetKeyDown(KeyCode.Escape)){
-            menuObject.SetActive( !menuObject.activeSelf );
+            bool active = !menuObject.activeSelf;
+            menuObject.SetActive( active );
+            Time.timeScale = active ? 0:1;
         }
     }
 

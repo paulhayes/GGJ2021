@@ -20,6 +20,7 @@ public class AutoRespawn : MonoBehaviour
     {
         if(targetTransform.position.y < bottom){
             duplicate.SetActive(true);
+            Destroy(gameObject);
         }
     }
 }
