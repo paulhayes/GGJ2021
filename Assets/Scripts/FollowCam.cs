@@ -18,13 +18,14 @@ public class FollowCam : MonoBehaviour
     float speed;
     void Start()
     {
-        if(!followTarget){
-            followTarget = Object.FindObjectOfType<Fling>().transform;
-        }
+        
     }
 
     void Update()
     {
+        if(!followTarget){
+            followTarget = Object.FindObjectOfType<Fling>().transform;
+        }
         var camPos = transform.position;
         var targetPos = followTarget.position + new Vector3(0,targetYOffset,0);
         camPos.y = Mathf.Clamp(camPos.y,minY,maxY);

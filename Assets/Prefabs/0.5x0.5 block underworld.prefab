@@ -12,13 +12,12 @@ GameObject:
   - component: {fileID: 8654925369920768}
   - component: {fileID: 8654925369920895}
   - component: {fileID: 8654925369920894}
-  - component: {fileID: 8654925369920893}
   m_Layer: 0
   m_Name: 0.5x0.5 block underworld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8654925369920769
 Transform:
@@ -297,20 +296,19 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!64 &8654925369920893
-MeshCollider:
+--- !u!65 &5625178473722364179
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8654925369920892}
+  m_GameObject: {fileID: 7449288864097404176}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.37929592, y: 0.39280307, z: 1.5726172}
+  m_Center: {x: 0.087532, y: 0.31362504, z: 0.66557145}
 --- !u!1001 &1459410192939867161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -393,8 +391,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Underworld_1x1
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 171e313ef4b21c44db02a42cd72bfcd6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 171e313ef4b21c44db02a42cd72bfcd6, type: 3}
+--- !u!1 &7449288864097404176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 171e313ef4b21c44db02a42cd72bfcd6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1459410192939867161}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5853106217829431043 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 171e313ef4b21c44db02a42cd72bfcd6,

@@ -252,6 +252,11 @@ PrefabInstance:
       propertyPath: maxForce
       value: 700
       objectReference: {fileID: 0}
+    - target: {fileID: 1005782542, guid: 3b7eaabffaadb7f4ead2c43b8aaf78e5, type: 3}
+      propertyPath: flingCount
+      value: 
+      objectReference: {fileID: 11400000, guid: 503fb9f66b199a24e96fcfd221a8b957,
+        type: 2}
     - target: {fileID: 1674579400, guid: 3b7eaabffaadb7f4ead2c43b8aaf78e5, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: -0.47308153

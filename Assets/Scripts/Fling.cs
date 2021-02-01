@@ -9,10 +9,11 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     [SerializeField] float forceMultiplier;
     Transform arrowAsset;
     [SerializeField] float maxForce = 800f;
+    [SerializeField] float minArrowScale = 0.5f;
     [SerializeField] float maxArrowScale = 4f;
     [SerializeField] LayerMask layerMask;
 
-
+    [SerializeField] IntAsset flingCount;
     [SerializeField] float minForce = 10f;
     [SerializeField] Transform ArrowPrefab;
     
@@ -34,7 +35,7 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
     {
         arrowAsset = Instantiate(ArrowPrefab);
         arrowAsset.gameObject.SetActive(false);
-        
+        flingCount.Value = 0;
     }
 
     void Update()
@@ -83,7 +84,7 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
         arrowAsset.position = startPos + (cam.transform.position-startPos).normalized;
         arrowAsset.rotation = Quaternion.FromToRotation(Vector3.down,direction);
         flingForce =  Mathf.Clamp( Vector3.Distance(startPos,currentPos)*forceMultiplier, minForce, maxForce );
-        arrowAsset.localScale = Vector3.one * maxArrowScale * Mathf.InverseLerp(0,maxForce,flingForce);
+        arrowAsset.localScale = Vector3.one * Mathf.Lerp(minArrowScale,maxArrowScale,Mathf.InverseLerp(minForce,maxForce,flingForce));
         arrowAsset.gameObject.SetActive(true);
     }
 
@@ -145,7 +146,7 @@ public class Fling : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerU
         else {
             Debug.LogError("no rigidbody found on character?");
         }
-
+        flingCount.Value++;
         OnFling.Invoke();
     }
 }
