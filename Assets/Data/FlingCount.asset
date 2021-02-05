@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FlingCount
   m_EditorClassIdentifier: 
   initialValue: 0
-  value: 0
+  value: 5
