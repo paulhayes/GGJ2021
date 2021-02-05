@@ -1,7 +1,7 @@
 {
 "companyName": "DefaultCompany",
 "productName": "Momentum Murray GGJ2021",
-"productVersion": "0.999",
+"productVersion": "1.01",
 "dataUrl": "docs.data.unityweb",
 "wasmCodeUrl": "docs.wasm.code.unityweb",
 "wasmFrameworkUrl": "docs.wasm.framework.unityweb",
